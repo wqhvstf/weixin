@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weixin.dao.ResultPOMapper">
+	<resultMap id="BaseResultMap" type="ResultPO">
+		<result column="sGuid" property="sguid" jdbcType="VARCHAR" />
+		<result column="sOpenid" property="sopenid" jdbcType="VARCHAR" />
+		<result column="iFirndHelp" property="ifirndhelp" jdbcType="INTEGER" />
+		<result column="sFrindOpenid" property="sfrindopenid" jdbcType="VARCHAR" />
+		<result column="fAmount" property="famount" jdbcType="DOUBLE" />
+		<result column="dGameTime" property="dgametime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		sGuid, sOpenid, iFirndHelp, sFrindOpenid, fAmount,dGameTime
+	</sql>
+	<select id="selectResultByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from qhb_result
+		where sOpenid = #{sopenid,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insert" parameterType="ResultPO">
+		insert into qhb_result (sGuid, sOpenid, iFirndHelp,
+		sFrindOpenid, fAmount,
+		dGameTime
+		)
+		values (#{sguid,jdbcType=VARCHAR}, #{sopenid,jdbcType=VARCHAR}, #{ifirndhelp,jdbcType=INTEGER},
+		#{sfrindopenid,jdbcType=VARCHAR}, #{famount,jdbcType=DOUBLE}, #{dgametime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="ResultPO">
+		insert into qhb_result
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sguid != null">
+				sGuid,
+			</if>
+			<if test="sopenid != null">
+				sOpenid,
+			</if>
+			<if test="ifirndhelp != null">
+				iFirndHelp,
+			</if>
+			<if test="sfrindopenid != null">
+				sFrindOpenid,
+			</if>
+			<if test="famount != null">
+				fAmount,
+			</if>
+			<if test="dgametime != null">
+				dGameTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sguid != null">
+				#{sguid,jdbcType=VARCHAR},
+			</if>
+			<if test="sopenid != null">
+				#{sopenid,jdbcType=VARCHAR},
+			</if>
+			<if test="ifirndhelp != null">
+				#{ifirndhelp,jdbcType=INTEGER},
+			</if>
+			<if test="sfrindopenid != null">
+				#{sfrindopenid,jdbcType=VARCHAR},
+			</if>
+			<if test="famount != null">
+				#{famount,jdbcType=DOUBLE},
+			</if>
+			<if test="dgametime != null">
+				#{dgametime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+</mapper>

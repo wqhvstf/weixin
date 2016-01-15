@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weixin.dao.UserPOMapper">
+	<resultMap id="BaseResultMap" type="UserPO">
+		<id column="sGuid" property="sguid" jdbcType="VARCHAR" />
+		<result column="sMemberId" property="smemberid" jdbcType="VARCHAR" />
+		<result column="sOpenId" property="sopenid" jdbcType="VARCHAR" />
+		<result column="sMobile" property="smobile" jdbcType="VARCHAR" />
+		<result column="sNickName" property="snickname" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		sGuid, sMemberId, sOpenId, sMobile, sNickName
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from qhb_user
+		where sGuid = #{sguid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from qhb_user
+		where sGuid = #{sguid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="UserPO">
+		insert into qhb_user (sGuid, sMemberId, sOpenId,
+		sMobile, sNickName)
+		values (#{sguid,jdbcType=VARCHAR}, #{smemberid,jdbcType=VARCHAR}, #{sopenid,jdbcType=VARCHAR},
+		#{smobile,jdbcType=VARCHAR}, #{snickname,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="UserPO">
+		insert into qhb_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sguid != null">
+				sGuid,
+			</if>
+			<if test="smemberid != null">
+				sMemberId,
+			</if>
+			<if test="sopenid != null">
+				sOpenId,
+			</if>
+			<if test="smobile != null">
+				sMobile,
+			</if>
+			<if test="snickname != null">
+				sNickName,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sguid != null">
+				#{sguid,jdbcType=VARCHAR},
+			</if>
+			<if test="smemberid != null">
+				#{smemberid,jdbcType=VARCHAR},
+			</if>
+			<if test="sopenid != null">
+				#{sopenid,jdbcType=VARCHAR},
+			</if>
+			<if test="smobile != null">
+				#{smobile,jdbcType=VARCHAR},
+			</if>
+			<if test="snickname != null">
+				#{snickname,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="UserPO">
+		update qhb_user
+		<set>
+			<if test="smemberid != null">
+				sMemberId = #{smemberid,jdbcType=VARCHAR},
+			</if>
+			<if test="sopenid != null">
+				sOpenId = #{sopenid,jdbcType=VARCHAR},
+			</if>
+			<if test="smobile != null">
+				sMobile = #{smobile,jdbcType=VARCHAR},
+			</if>
+			<if test="snickname != null">
+				sNickName = #{snickname,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where sGuid = #{sguid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="UserPO">
+		update qhb_user
+		set sMemberId = #{smemberid,jdbcType=VARCHAR},
+		sOpenId = #{sopenid,jdbcType=VARCHAR},
+		sMobile = #{smobile,jdbcType=VARCHAR},
+		sNickName = #{snickname,jdbcType=VARCHAR}
+		where sGuid = #{sguid,jdbcType=VARCHAR}
+	</update>
+</mapper>

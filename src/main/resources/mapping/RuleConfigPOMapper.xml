@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weixin.dao.RuleConfigPOMapper">
+	<resultMap id="BaseResultMap" type="RuleConfigPO">
+		<id column="sGuid" property="sguid" jdbcType="VARCHAR" />
+		<result column="sActivityDate" property="sactivitydate" jdbcType="TIMESTAMP" />
+		<result column="iMyselefCount" property="imyselefcount" jdbcType="INTEGER" />
+		<result column="iMyselefAccurateCount" property="imyselefaccuratecount" jdbcType="INTEGER" />
+		<result column="fTotalAmount" property="ftotalamount" jdbcType="INTEGER" />
+		<result column="dFrindProbability" property="dfrindprobability" jdbcType="DOUBLE" />
+		<result column="iFrindCount" property="ifrindcount" jdbcType="INTEGER" />
+		<result column="dMyselefMax" property="dmyselefmax" jdbcType="DOUBLE" />
+		<result column="dMyselefMin" property="dmyselefmin" jdbcType="DOUBLE" />
+		<result column="dSevenFrindMax" property="dsevenfrindmax" jdbcType="DOUBLE" />
+		<result column="dSevenFrindMin" property="dsevenfrindmin" jdbcType="DOUBLE" />
+		<result column="dThridFrindMax" property="dthridfrindmax" jdbcType="DOUBLE" />
+		<result column="dThridFrindMin" property="dthridfrindmin" jdbcType="DOUBLE" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		sGuid, sActivityDate, iMyselefCount, iMyselefAccurateCount, fTotalAmount, dFrindProbability,
+		iFrindCount, dMyselefMax, dMyselefMin, dSevenFrindMax, dSevenFrindMin, dThridFrindMax,
+		dThridFrindMin
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from qhb_rule_config
+		where sGuid = #{sguid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from qhb_rule_config
+		where sGuid = #{sguid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="RuleConfigPO">
+		insert into qhb_rule_config (sGuid, sActivityDate, iMyselefCount,
+		iMyselefAccurateCount, fTotalAmount, dFrindProbability,
+		iFrindCount, dMyselefMax, dMyselefMin,
+		dSevenFrindMax, dSevenFrindMin, dThridFrindMax,
+		dThridFrindMin)
+		values (#{sguid,jdbcType=VARCHAR}, #{sactivitydate,jdbcType=TIMESTAMP}, #{imyselefcount,jdbcType=INTEGER},
+		#{imyselefaccuratecount,jdbcType=INTEGER}, #{ftotalamount,jdbcType=INTEGER}, #{dfrindprobability,jdbcType=DOUBLE},
+		#{ifrindcount,jdbcType=INTEGER}, #{dmyselefmax,jdbcType=DOUBLE}, #{dmyselefmin,jdbcType=DOUBLE},
+		#{dsevenfrindmax,jdbcType=DOUBLE}, #{dsevenfrindmin,jdbcType=DOUBLE}, #{dthridfrindmax,jdbcType=DOUBLE},
+		#{dthridfrindmin,jdbcType=DOUBLE})
+	</insert>
+	<insert id="insertSelective" parameterType="RuleConfigPO">
+		insert into qhb_rule_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sguid != null">
+				sGuid,
+			</if>
+			<if test="sactivitydate != null">
+				sActivityDate,
+			</if>
+			<if test="imyselefcount != null">
+				iMyselefCount,
+			</if>
+			<if test="imyselefaccuratecount != null">
+				iMyselefAccurateCount,
+			</if>
+			<if test="ftotalamount != null">
+				fTotalAmount,
+			</if>
+			<if test="dfrindprobability != null">
+				dFrindProbability,
+			</if>
+			<if test="ifrindcount != null">
+				iFrindCount,
+			</if>
+			<if test="dmyselefmax != null">
+				dMyselefMax,
+			</if>
+			<if test="dmyselefmin != null">
+				dMyselefMin,
+			</if>
+			<if test="dsevenfrindmax != null">
+				dSevenFrindMax,
+			</if>
+			<if test="dsevenfrindmin != null">
+				dSevenFrindMin,
+			</if>
+			<if test="dthridfrindmax != null">
+				dThridFrindMax,
+			</if>
+			<if test="dthridfrindmin != null">
+				dThridFrindMin,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sguid != null">
+				#{sguid,jdbcType=VARCHAR},
+			</if>
+			<if test="sactivitydate != null">
+				#{sactivitydate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="imyselefcount != null">
+				#{imyselefcount,jdbcType=INTEGER},
+			</if>
+			<if test="imyselefaccuratecount != null">
+				#{imyselefaccuratecount,jdbcType=INTEGER},
+			</if>
+			<if test="ftotalamount != null">
+				#{ftotalamount,jdbcType=INTEGER},
+			</if>
+			<if test="dfrindprobability != null">
+				#{dfrindprobability,jdbcType=DOUBLE},
+			</if>
+			<if test="ifrindcount != null">
+				#{ifrindcount,jdbcType=INTEGER},
+			</if>
+			<if test="dmyselefmax != null">
+				#{dmyselefmax,jdbcType=DOUBLE},
+			</if>
+			<if test="dmyselefmin != null">
+				#{dmyselefmin,jdbcType=DOUBLE},
+			</if>
+			<if test="dsevenfrindmax != null">
+				#{dsevenfrindmax,jdbcType=DOUBLE},
+			</if>
+			<if test="dsevenfrindmin != null">
+				#{dsevenfrindmin,jdbcType=DOUBLE},
+			</if>
+			<if test="dthridfrindmax != null">
+				#{dthridfrindmax,jdbcType=DOUBLE},
+			</if>
+			<if test="dthridfrindmin != null">
+				#{dthridfrindmin,jdbcType=DOUBLE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="RuleConfigPO">
+		update qhb_rule_config
+		<set>
+			<if test="sactivitydate != null">
+				sActivityDate = #{sactivitydate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="imyselefcount != null">
+				iMyselefCount = #{imyselefcount,jdbcType=INTEGER},
+			</if>
+			<if test="imyselefaccuratecount != null">
+				iMyselefAccurateCount = #{imyselefaccuratecount,jdbcType=INTEGER},
+			</if>
+			<if test="ftotalamount != null">
+				fTotalAmount = #{ftotalamount,jdbcType=INTEGER},
+			</if>
+			<if test="dfrindprobability != null">
+				dFrindProbability = #{dfrindprobability,jdbcType=DOUBLE},
+			</if>
+			<if test="ifrindcount != null">
+				iFrindCount = #{ifrindcount,jdbcType=INTEGER},
+			</if>
+			<if test="dmyselefmax != null">
+				dMyselefMax = #{dmyselefmax,jdbcType=DOUBLE},
+			</if>
+			<if test="dmyselefmin != null">
+				dMyselefMin = #{dmyselefmin,jdbcType=DOUBLE},
+			</if>
+			<if test="dsevenfrindmax != null">
+				dSevenFrindMax = #{dsevenfrindmax,jdbcType=DOUBLE},
+			</if>
+			<if test="dsevenfrindmin != null">
+				dSevenFrindMin = #{dsevenfrindmin,jdbcType=DOUBLE},
+			</if>
+			<if test="dthridfrindmax != null">
+				dThridFrindMax = #{dthridfrindmax,jdbcType=DOUBLE},
+			</if>
+			<if test="dthridfrindmin != null">
+				dThridFrindMin = #{dthridfrindmin,jdbcType=DOUBLE},
+			</if>
+		</set>
+		where sGuid = #{sguid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="RuleConfigPO">
+		update qhb_rule_config
+		set sActivityDate = #{sactivitydate,jdbcType=TIMESTAMP},
+		iMyselefCount = #{imyselefcount,jdbcType=INTEGER},
+		iMyselefAccurateCount = #{imyselefaccuratecount,jdbcType=INTEGER},
+		fTotalAmount = #{ftotalamount,jdbcType=INTEGER},
+		dFrindProbability = #{dfrindprobability,jdbcType=DOUBLE},
+		iFrindCount = #{ifrindcount,jdbcType=INTEGER},
+		dMyselefMax = #{dmyselefmax,jdbcType=DOUBLE},
+		dMyselefMin = #{dmyselefmin,jdbcType=DOUBLE},
+		dSevenFrindMax = #{dsevenfrindmax,jdbcType=DOUBLE},
+		dSevenFrindMin = #{dsevenfrindmin,jdbcType=DOUBLE},
+		dThridFrindMax = #{dthridfrindmax,jdbcType=DOUBLE},
+		dThridFrindMin = #{dthridfrindmin,jdbcType=DOUBLE}
+		where sGuid = #{sguid,jdbcType=VARCHAR}
+	</update>
+</mapper>
